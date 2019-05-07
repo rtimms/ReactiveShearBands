@@ -1,0 +1,66 @@
+\documentclass[11pt]{article}
+\usepackage{rtimms_draft}
+
+%Title
+\title{\vspace{-4ex}\textbf{A Boundary Layer Analysis for the Initiation of Reactive Shear Bands}}
+\date{}
+\author{\vspace{1ex}Robert Timms$\,^{\text a *}$, Richard Purvis$\,^{\text a}$ and John P. Curtis$\,^{\text b,c}$ \\  {\em  $^{\text a}$School of Mathematics, University of East Anglia, Norwich NR4 7TJ;}\\ {\em $^{\text b}$AWE, Aldermaston, Berkshire RG7 4PR;} \\{\em $^{\text c}$Department of Mathematics, University College London, Gower Street, London WC1E 6BT.} \\ \vspace{1ex}$^{*}$r.timms@uea.ac.uk}
+
+\usepackage{palatino}
+
+
+
+%\pgfplotsset{compat=1.13, legend style = {font=\tiny}, label style = {font=\tiny}, every tick label/.append style={font=\sansmath\sffamily\tiny,}, y tick scale label style={xshift=0.025\figurewidth},try min ticks=5, every axis/.append style= {semithick}}
+
+\pgfplotsset{compat=1.13, legend style = {font=\sansmath\sffamily\scriptsize}, label style = {font=\sansmath\sffamily\scriptsize}, every tick label/.append style={font=\sansmath\sffamily\scriptsize}, y tick scale label style={xshift=0.025\figurewidth},try min ticks=5, every axis/.append style= {thick}}
+
+\begin{document}
+
+%\begin{figure}[tbp]
+%\centering
+%\begin{tikzpicture}[]
+%\node[font=\footnotesize] at (-8.5,-6) {\includegraphics[height=5cm,width=11cm]{simpleshear}};
+%\node[font=\scriptsize] at (-14,-5.5) {\sffamily  uniform shear};
+%\node[font=\scriptsize] at (-2.75,-7.8) {\sffamily shear band};
+%\node[font=\footnotesize] at (-3,-6) {$\tilde{y}=0$};
+%\node[font=\footnotesize] at (-13.5,-7.5) {$\tilde{y}=-L$};
+%\node[font=\footnotesize] at (-13.5,-4.5) {$\tilde{y}=L$};
+%\node[font=\footnotesize] at (-8,-3) {$\tilde{v}_0$};
+%\node[font=\footnotesize] at (-8,-9) {$-\tilde{v}_0$};
+%\end{tikzpicture}\caption[Schematic of uniform shearing vs. a shear band.]{Schematic of uniform shearing vs. a shear band centered about $\tilde{y} = 0$.}
+%\label{fig:simple_shear}
+%\end{figure}
+
+%\begin{figure}[tbp]
+%\centering
+%\tikzsetnextfilename{ApproachIsketch}
+%\input{ApproachI.tikz}
+%\caption[Sketch of the asymptotic structure used in Approach I.]{Sketch of the asymptotic structure used in Approach I. The up and down arrows at the matching interface between the shear band zone and the diffusive zone indicate that the problems are solved in conjunction with one another; the matching of the two solutions is necessary to obtain the behaviour of the centreline temperature and stress. The solution in the diffusive zone decays to the elastic solution as $Y \to \infty$.}
+%\label{fig:ApproachIregion}
+%\end{figure}
+
+\begin{figure}[tbp]
+\centering
+\setlength\figureheight{2.85cm}      
+\setlength\figurewidth{3cm}
+\tikzsetnextfilename{fgk_reac}
+\input{fgk_reac.tikz}
+\end{figure}
+
+%\begin{figure}[tbp]
+%\centering
+%\setlength\figureheight{4.75cm}      
+%\setlength\figurewidth{5cm}
+%\tikzsetnextfilename{RSB_criterion}
+%\input{RSB_criterion.tikz}
+%\end{figure}
+
+%\begin{figure}[tbp]
+%\centering
+%\setlength\figureheight{4.75cm}      
+%\setlength\figurewidth{5cm}
+%\tikzsetnextfilename{RSB_num2}
+%\input{RSB_num2.tikz}
+%\end{figure}
+
+\end{document}

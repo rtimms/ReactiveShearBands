@@ -1,0 +1,338 @@
+\ProvidesPackage{general}
+
+% Spacing 
+\setlength\parindent{1em}
+\setlength{\parskip}{0em}
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage[protrusion=true,expansion=true]{microtype}
+
+%-------------------------------------------------------------------------------------------------------------
+
+
+
+
+%-------------------------------------------------------------------------------------------------------------
+
+
+% Margins
+\usepackage[top=3cm, bottom=3cm, right=2.5cm, left=2.5cm]{geometry}		
+%-------------------------------------------------------------------------------------------------------------
+
+	
+% Packages
+\usepackage{appendix}												% Appendices
+
+\usepackage{amsmath}												% Maths
+\usepackage{amsfonts}												% Math fonts
+
+\usepackage{enumerate}												% Enumerate 
+\usepackage{color,soul}												% Highlighting 
+\usepackage{cancel}													% Cancel maths
+\usepackage{gensymb}												% Symbols 
+\usepackage{textcomp}												% Text companion fonts
+\usepackage{url}													% Include urls
+\usepackage{siunitx}													% SI units
+\usepackage{hyperref}												% Linked references
+\usepackage{booktabs}												% Nice tables
+
+
+\usepackage{graphicx}												% Graphics
+\usepackage[font=footnotesize,labelfont=bf]{caption}							% Caption font
+\usepackage[font=footnotesize,labelfont=bf]{subcaption}						% Subcaption font
+\usepackage{stackengine}												% Stack objects
+\usepackage{placeins}												% Floatbarrier command 
+
+\usepackage{datetime}												% Date
+
+\newdateformat{monthyeardate}{%
+  \monthname[\THEMONTH] \THEYEAR}
+%-------------------------------------------------------------------------------------------------------------
+
+% Equation Numbering
+\numberwithin{equation}{section}
+%-------------------------------------------------------------------------------------------------------------
+
+
+% matlab2tikz
+\usepackage{tikz, pgfplots} 
+\usepackage{helvet}
+\usepackage[eulergreek]{sansmath}
+\usepgfplotslibrary{fillbetween}
+
+\usetikzlibrary{external,patterns,shapes,arrows,decorations.pathreplacing,plotmarks} 
+%\tikzset{external/system call={pdflatex \tikzexternalcheckshellescape 
+%                                        -halt-on-error
+%                                        -interaction=batchmode 
+%                                        -jobname "\image" "\texsource"
+%                                        && pdftops -eps "\image.pdf"}}
+%\tikzexternalize[optimize=false,prefix=tikz_cache/] 
+\tikzexternalize[prefix=figures_tikz/] 
+\usepackage{caption}
+\usepackage[list=true]{subcaption}
+
+\newlength\figureheight
+\newlength\figurewidth
+
+
+%% Serif
+%\pgfplotsset{compat=1.13, legend style = {font=\tiny}, label style = {font=\footnotesize}, every tick label/.append style={font=\scriptsize,},  try min ticks=7,  colorbar style={width=0.05*\pgfkeysvalueof{/pgfplots/parent axis width},font=\scriptsize,y tick scale label style={xshift=2em},title style={xshift=-2em},}, every axis/.append style= {semithick}}
+%
+%
+%% Sans-serif
+%%\pgfplotsset{compat=1.13, legend style = {font=\sansmath\sffamily\tiny}, label style = {font=\sansmath\sffamily\footnotesize}, every tick label/.append style={font=\sansmath\sffamily\scriptsize,}, try min ticks=7,  colorbar style={width=0.05*\pgfkeysvalueof{/pgfplots/parent axis width},font=\sansmath\sffamily\scriptsize,y tick scale label style={xshift=2em},title style={xshift=-2em},}, every axis/.append style= {semithick}}
+
+% tikzfig
+\newcommand{\tikzfig}[5][tbp]{
+\begin{figure}[#1]
+\centering
+\begin{subfigure}{0.49\textwidth}
+\setlength\figureheight{0.65\textwidth}      
+\setlength\figurewidth{0.78\textwidth}
+\tikzsetnextfilename{#2}
+\input{tikz_source/#2.tikz}
+\end{subfigure}
+\caption[#3]{#4}
+\label{#5}
+\end{figure}}
+
+% largetikzfig
+\newcommand{\largetikzfig}[5][tbp]{
+\begin{figure}[#1]
+\centering
+\setlength\figureheight{0.5\textwidth}      
+\setlength\figurewidth{0.6\textwidth}
+\tikzsetnextfilename{#2}
+\input{tikz_source/#2.tikz}
+\caption[#3]{#4}
+\label{#5}
+\end{figure}}
+
+% widetikzfig
+\newcommand{\widetikzfig}[5][tbp]{
+\begin{figure}[#1]
+\centering
+\setlength\figureheight{0.5\textwidth}      
+\setlength\figurewidth{0.9\textwidth}
+\tikzsetnextfilename{#2}
+\input{tikz_source/#2.tikz}
+\caption[#3]{#4}
+\label{#5}
+\end{figure}}
+
+
+% twotikzfigs
+\newcommand{\twotikzfigs}[6][tbp]{
+\begin{figure}[#1]
+\centering
+\hspace{-0.05\textwidth}
+\begin{subfigure}{0.49\textwidth}
+\centering
+\topinset{{\footnotesize (a)}}{ 
+%\topinset{{\footnotesize \sffamily (a)}}{ 
+\setlength\figureheight{0.65\textwidth}      
+\setlength\figurewidth{0.78\textwidth}
+\tikzsetnextfilename{#2}
+\input{tikz_source/#2.tikz}
+}{0cm}{-0.45\textwidth}
+\end{subfigure}
+\begin{subfigure}{0.49\textwidth}
+\centering
+\topinset{{\footnotesize (b)}}{ 
+%\topinset{{\footnotesize  \sffamily (b)}}{ 
+\setlength\figureheight{0.65\textwidth}      
+\setlength\figurewidth{0.78\textwidth}
+\tikzsetnextfilename{#3}
+\input{tikz_source/#3.tikz}
+}{0cm}{-0.45\textwidth}
+\end{subfigure}
+\caption[#4]{#5}
+\label{#6}
+\end{figure}}
+
+% threetikzfigs
+\newcommand{\threetikzfigs}[7][tbp]{
+\begin{figure}[#1]
+\centering
+\begin{subfigure}{\textwidth}
+\centering
+\topinset{{\footnotesize (a)}}{ 
+%\topinset{{\footnotesize  \sffamily (a)}}{ 
+\setlength\figureheight{0.375\textwidth}      
+\setlength\figurewidth{0.675\textwidth}
+\tikzsetnextfilename{#2}
+\input{tikz_source/#2.tikz}
+}{0cm}{-0.375\textwidth}
+\end{subfigure}
+
+\vspace{0.025\textwidth}
+
+\begin{subfigure}{\textwidth}
+\centering
+\topinset{{\footnotesize (b)}}{ 
+%\topinset{{\footnotesize  \sffamily (b)}}{ 
+\setlength\figureheight{0.375\textwidth}      
+\setlength\figurewidth{0.675\textwidth}
+\tikzsetnextfilename{#3}
+\input{tikz_source/#3.tikz}
+}{0cm}{-0.375\textwidth}
+\end{subfigure}
+
+\vspace{0.025\textwidth}
+
+\begin{subfigure}{\textwidth}
+\centering
+\topinset{{\footnotesize (c)}}{ 
+%\topinset{{\footnotesize  \sffamily (c)}}{ 
+\setlength\figureheight{0.375\textwidth}      
+\setlength\figurewidth{0.675\textwidth}
+\tikzsetnextfilename{#4}
+\input{tikz_source/#4.tikz}
+}{0cm}{-0.375\textwidth}
+\end{subfigure}
+\hspace{1em}
+\caption[#5]{#6}
+\label{#7}
+\end{figure}}
+
+% threenartikzfigs
+\newcommand{\threenartikzfigs}[7][tbp]{
+\begin{figure}[#1]
+\centering
+\begin{subfigure}{0.25\textwidth}
+\centering
+\topinset{{\footnotesize (a)}}{ 
+%\topinset{{\footnotesize  \sffamily (a)}}{ 
+\setlength\figureheight{1.3\textwidth}      
+\setlength\figurewidth{0.75\textwidth}
+\tikzsetnextfilename{#2}
+\input{tikz_source/#2.tikz}
+}{0cm}{-0.45\textwidth}
+\end{subfigure}
+\hspace{2em}
+\begin{subfigure}{0.25\textwidth}
+\centering
+\topinset{{\footnotesize (b)}}{ 
+%\topinset{{\footnotesize  \sffamily (b)}}{ 
+\setlength\figureheight{1.3\textwidth}      
+\setlength\figurewidth{0.75\textwidth}
+\tikzsetnextfilename{#3}
+\input{tikz_source/#3.tikz}
+}{0cm}{-0.45\textwidth}
+\end{subfigure}
+\hspace{2em}
+\begin{subfigure}{0.25\textwidth}
+\centering
+\topinset{{\footnotesize (c)}}{ 
+%\topinset{{\footnotesize  \sffamily (c)}}{ 
+\setlength\figureheight{1.3\textwidth}      
+\setlength\figurewidth{0.75\textwidth}
+\tikzsetnextfilename{#4}
+\input{tikz_source/#4.tikz}
+}{0cm}{-0.45\textwidth}
+\end{subfigure}
+\hspace{1em}
+\caption[#5]{#6}
+\label{#7}
+\end{figure}}
+
+
+% fourtikzfigs
+\newcommand{\fourtikzfigs}[8][tbp]{
+\begin{figure}[#1]
+\centering
+\hspace{-0.05\textwidth}
+\begin{subfigure}{0.49\textwidth}
+\centering
+\topinset{{\footnotesize (a)}}{ 
+%\topinset{{\footnotesize  \sffamily (a)}}{ 
+\setlength\figureheight{0.65\textwidth}      
+\setlength\figurewidth{0.78\textwidth}
+\tikzsetnextfilename{#2}
+\input{tikz_source/#2.tikz}
+}{0cm}{-0.45\textwidth}
+\end{subfigure}
+\begin{subfigure}{0.49\textwidth}
+\centering
+\topinset{{\footnotesize (b)}}{ 
+%\topinset{{\footnotesize  \sffamily (b)}}{ 
+\setlength\figureheight{0.65\textwidth}      
+\setlength\figurewidth{0.78\textwidth}
+\tikzsetnextfilename{#3}
+\input{tikz_source/#3.tikz}
+}{0cm}{-0.45\textwidth}
+\end{subfigure}
+
+\vspace{0.025\textwidth}
+
+\hspace{-0.05\textwidth}
+\begin{subfigure}{0.49\textwidth}
+\centering
+\topinset{{\footnotesize (c)}}{ 
+%\topinset{{\footnotesize  \sffamily  (c)}}{ 
+\setlength\figureheight{0.65\textwidth}      
+\setlength\figurewidth{0.78\textwidth}
+\tikzsetnextfilename{#4}
+\input{tikz_source/#4.tikz}
+}{0cm}{-0.45\textwidth}
+\end{subfigure}
+\begin{subfigure}{0.49\textwidth}
+\centering
+\topinset{{\footnotesize (d)}}{ 
+%\topinset{{\footnotesize  \sffamily  (d)}}{ 
+\setlength\figureheight{0.65\textwidth}      
+\setlength\figurewidth{0.78\textwidth}
+\tikzsetnextfilename{#5}
+\input{tikz_source/#5.tikz}
+}{0cm}{-0.45\textwidth}
+\end{subfigure}
+\caption[#6]{#7}
+\label{#8}
+\end{figure}}
+
+
+%-------------------------------------------------------------------------------------------------------------
+
+
+% Bibliography
+\usepackage[sort&compress, numbers]{natbib}	
+%-------------------------------------------------------------------------------------------------------------
+
+					
+% New Commands
+\DeclareMathOperator\erfc{erfc}										% Complimentary error function
+\newcommand{\der}[3][]{\frac{\mathrm{d}^{#1}#2}{\mathrm{d} #3^{#1}}} 			% Derivative 
+\DeclareMathOperator\erf{erf}											% Error function
+\newcommand{\etal}{{et al}.\ }											% et al.
+\newcommand{\pd}[3][]{\frac{\partial^{#1}#2}{\partial #3^{#1}}}					% Partial derivative 
+\newcommand{\pdd}[3]{\frac{\partial^{2}#1}{\partial #2 \partial #3}}			        % Mixed second partial derivative 
+\newcommand{\pddd}[4]{\frac{\partial^{3}#1}{\partial #2 \partial #3 \partial #4}}	        % Mixed third partial derivative 
+\newcommand{\md}[1]{\frac{\text{D}#1}{\text{D}t}}						        % Material derivative 
+\newcommand{\motion}[3]{\boldsymbol{#1}(\mathbf{#2},#3)}					% Motion (continuum mechanics)
+\newcommand{\dif}{\mathop{}\!\mathrm{d}}								% Straight d with spacing for integrals etc.
+\newcommand{\intf}{\int_{-\infty}^{\infty}}									% Integral with +/- infty limits 
+\renewcommand{\vec}[1]{\boldsymbol{\mathbf{#1}}}							% Vector
+\newcommand{\mr}[1]{\mathrm{#1}}										% Mathroom
+\newcommand{\s}{\sigma}											        % sigma
+\renewcommand{\t}{\theta}											% Theta
+\DeclareMathOperator\tr{tr}											% Trace
+\newcommand{\eps}{\varepsilon}										% Varepsilon
+
+%-------------------------------------------------------------------------------------------------------------
+
+
+% Dimensionless Numbers
+\newcommand{\Br}{\operatorname{Br}}	% Brinkman number 
+\newcommand{\Dn}{\operatorname{Dn}}	% Damage number 
+\newcommand{\Eck}{\operatorname{Ec}}  % Eckert number
+\newcommand{\Pen}{\operatorname{Pe}}  % Peclet number
+\newcommand{\Pran}{\operatorname{Pr}} % Prandtl number, cf TeX's \Pr product
+\newcommand{\Ste}{\operatorname{Ste}}  % Stefan number
+\newcommand{\Rn}{\operatorname{Rn}}  % Reaction number
+\newcommand{\Rey}{\operatorname{Re}}  % Reynolds number
+\newcommand{\ReY}{\mathcal{R}}  % Generalised Reynolds number
+%-------------------------------------------------------------------------------------------------------------
+
+
+\endinput

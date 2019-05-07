@@ -1,0 +1,45 @@
+\pgfdeclaredecoration{half brace}{brace}
+{%
+  \state{brace}[width=+\pgfdecoratedremainingdistance,next state=final]
+  {%
+    \pgfpathmoveto{\pgfpointorigin}%
+    \pgfpathcurveto%
+    {\pgfqpoint{.15\pgfdecorationsegmentamplitude}{.3\pgfdecorationsegmentamplitude}}%
+    {\pgfqpoint{.5\pgfdecorationsegmentamplitude}{.5\pgfdecorationsegmentamplitude}}%
+    {\pgfqpoint{\pgfdecorationsegmentamplitude}{.5\pgfdecorationsegmentamplitude}}%
+    {%
+      \pgftransformxshift{+\pgfdecorationsegmentaspect\pgfdecoratedremainingdistance}%
+      \pgfpathlineto{\pgfqpoint{-\pgfdecorationsegmentamplitude}{.5\pgfdecorationsegmentamplitude}}%
+      \pgfpathcurveto%
+      {\pgfqpoint{-.5\pgfdecorationsegmentamplitude}{.5\pgfdecorationsegmentamplitude}}%
+      {\pgfqpoint{-.15\pgfdecorationsegmentamplitude}{.7\pgfdecorationsegmentamplitude}}%
+      {\pgfqpoint{0\pgfdecorationsegmentamplitude}{1\pgfdecorationsegmentamplitude}}%
+      \pgfpathcurveto%
+      {\pgfqpoint{.15\pgfdecorationsegmentamplitude}{.7\pgfdecorationsegmentamplitude}}%
+      {\pgfqpoint{.5\pgfdecorationsegmentamplitude}{.5\pgfdecorationsegmentamplitude}}%
+      {\pgfqpoint{\pgfdecorationsegmentamplitude}{.5\pgfdecorationsegmentamplitude}}%
+    }%
+    {%
+      \pgftransformxshift{+\pgfdecoratedremainingdistance}%
+      \pgfpathlineto{\pgfqpoint{0pt}{.5\pgfdecorationsegmentamplitude}}%
+    }%
+  }%
+  \state{final}{}%
+}
+
+\begin{tikzpicture}
+\draw[->,thick] (0,0)--(10,0) node[below,font=\footnotesize]{$t$};
+\draw[->,thick] (0,0)--(0,6) node[left,font=\footnotesize]{$y$};
+\draw[thick,dash dot] (10,1.5)--(0,1.5) node[left,yshift=-2em,font=\footnotesize]{$y = \eps \xi$};
+\draw[thick,dash dot] (10,3.5)--(0,3.5) node[left,yshift=-2.5em,font=\footnotesize]{$y = \eps^{1/2} Y$};
+\draw[thick,dash dot] (3,0)--(3,6);
+\node[font=\scriptsize] at (1.5,0.75) {\sffamily Elastic};
+\node[font=\scriptsize] at (1.5,2.5) {\sffamily Elastic};
+\node[font=\scriptsize] at (1.5,4.75) {\sffamily Elastic};
+\node[font=\scriptsize] at (6.5,0.75) {\sffamily Plastic-Reaction};
+\node[font=\scriptsize][fill=white] at (6.5,1.5) {\sffamily $\uparrow$ Matching $\downarrow$};
+\node[font=\scriptsize] at (6.5,2.5) {\sffamily Diffusive Zone};
+\node[font=\scriptsize] at (6.5,4.75) {\sffamily Elastic};
+\node[font=\footnotesize][fill=white,font=\footnotesize] at (6.5,3.5) {$T \to T_{\text{e}}, s \to s_{\text{e}}$ as $Y \to \infty$};
+\draw [thick,decorate,decoration={half brace,amplitude=10pt,mirror}](3,-0.1) -- (9.75,-0.1) node[black,midway,yshift=-0.6cm,font=\footnotesize] {$t - t_{\text{p}} \sim O(\eps)$};
+\end{tikzpicture}
